@@ -1,0 +1,42 @@
+{% extends "score_board/layout.html" %}
+{% block body %}
+<h1> Score Board </h1>
+{% if message != "" %}
+    <div class="alert alert-primary" role="alert">
+    {{ message }}
+    </div>
+{% endif %}
+
+<div>
+    <h2>current scores</h2>
+
+    <div class="container">
+        <div class="row">
+            {% for team in teams %}
+            <div class="card" style="width: 10rem;">
+                <div class="col-">
+                    {% load static %}
+                    <img src="{{ STATIC_URL}}/{{ team.thumbnail }}", height="75" width="50">
+                    {{ team.name }}
+                    <hr>
+                    {{ team.points }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% if request.user.is_authenticated %}
+<div>
+    <hr>
+    <a class="btn btn-primary btn-lg btn-block" href="{% url 'points' %}" role="button">Give points</a>
+    <hr>
+    <a class="btn btn-primary btn-lg btn-block" href="{% url 'logoutview' %}" role="button">Log Out</a>
+</div>
+{% else %}
+<div>
+    <hr>
+    <a class="btn btn-primary btn-lg btn-block" href="{% url 'loginview' %}" role="button">Login</a>
+</div>
+{% endif %}
+{% endblock %}

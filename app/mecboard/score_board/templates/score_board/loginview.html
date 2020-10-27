@@ -1,0 +1,12 @@
+{% extends "score_board/layout.html" %}
+{% block body %}
+{{message}}
+<form action="{% url 'loginview' %}" method="POST">
+    {% csrf_token %}
+    <input class="input", type="text", name="username", placeholder="Username">
+    <input class="input", type="password", name="password", Placeholder="password">
+    <div>
+    <input type="submit", value="login">
+    </div>
+</form>
+{% endblock %}

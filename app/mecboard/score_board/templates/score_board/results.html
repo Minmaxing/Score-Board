@@ -1,0 +1,15 @@
+{% extends "score_board/layout.html" %}
+{% block body %}
+
+<div>
+How many points for
+</div>
+{{ student }} of team {{ student.team }}
+<hr>
+<form action="{% url 'finalize' student.id %}" method="post">
+    {% csrf_token %}
+    <input type="number" name="points" required>
+    <hr>
+    <input type=submit class="btn btn-primary btn-lg btn-block" role="button" value="Submit">
+</form>
+{% endblock %}
